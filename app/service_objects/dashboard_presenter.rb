@@ -14,10 +14,6 @@ class DashboardPresenter
     end
   end
 
-  def visited_countries
-    user.countries
-  end
-
   def collected_currencies
     user_currencies = user.user_currencies
 
@@ -33,6 +29,10 @@ class DashboardPresenter
           currencies_collected: index+1
         }
       end
+  end
+
+  def visited_countries
+    user.countries
   end
 
   private

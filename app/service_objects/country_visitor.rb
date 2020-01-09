@@ -8,9 +8,7 @@ class CountryVisitor
     return false if countries_to_visit.blank?
 
     countries_to_visit.each do |country|
-      ActiveRecord::Base.transaction do
-        collect_currency!(country.currency) if visit_country!(country)
-      end
+      collect_currency!(country.currency) if visit_country!(country)
     end
   end
 

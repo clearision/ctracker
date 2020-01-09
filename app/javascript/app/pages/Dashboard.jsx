@@ -23,12 +23,10 @@ class Dashboard extends Component {
     this.handleVisitCall = this.handleVisitCall.bind(this)
     this.renderVisitedCountries = this.renderVisitedCountries.bind(this)
     this.renderCollectedCurrencies = this.renderCollectedCurrencies.bind(this)
+  }
 
-    if(props.authToken == "") {
-      this.props.history.push("/sign_in")
-    } else {
-      this.fetchDashboardInfo()
-    }
+  componentDidMount() {
+    this.fetchDashboardInfo()
   }
 
   fetchDashboardInfo() {
@@ -86,7 +84,7 @@ class Dashboard extends Component {
   renderCountries(currency) {
     return(
       map(currency.countries, (country, index) => (
-        <li key={ country.code }>
+        <li key={ country.code } className="country-item">
           <div>
             <input
               type="checkbox"
@@ -105,7 +103,7 @@ class Dashboard extends Component {
   renderCurrencies() {
     return(
       map(this.state.currencies, (currency, index) => (
-        <li key={ currency.code }>
+        <li key={ currency.code } className="currency-item">
           <div>{currency.name} ({currency.code})</div>
           <ul>{this.renderCountries(currency)}</ul>
         </li>

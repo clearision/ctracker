@@ -17,7 +17,7 @@ class SignInForm extends Component {
     this.redirectToRoot = this.redirectToRoot.bind(this)
   }
 
-  handleFormSubmit() {
+  handleFormSubmit(event) {
     const { username, password } = this.state
 
     Rails.ajax({
@@ -32,11 +32,11 @@ class SignInForm extends Component {
     event.preventDefault()
   }
 
-  handleUsernameChange() {
+  handleUsernameChange(event) {
     this.setState({ username: event.target.value })
   }
 
-  handlePasswordChange() {
+  handlePasswordChange(event) {
     this.setState({ password: event.target.value })
   }
 
@@ -53,7 +53,7 @@ class SignInForm extends Component {
     const { username, password } = this.state
 
     return (
-      <form onSubmit={ this.handleFormSubmit }>
+      <form className="form sign-in-form" onSubmit={ this.handleFormSubmit }>
         <label>
           Username:
           <input
@@ -74,7 +74,7 @@ class SignInForm extends Component {
           />
         </label>
 
-        <input type="submit" value="Sign in" />
+        <input className="sign-in-btn" type="submit" value="Sign in" />
       </form>
     )
   }
