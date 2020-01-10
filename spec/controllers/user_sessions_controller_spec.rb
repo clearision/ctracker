@@ -14,7 +14,7 @@ RSpec.describe User::SessionsController, type: :controller do
     before { dispatch :post, :create }
 
     it { expect(subject['message']).to eq "Incorrect Username or Password" }
-    it { expect(response.status).to eq 422 }
+    it { expect(response.status).to eq 401 }
 
     context 'when credentials are correct' do
       let(:params) { { params: { username: 'admin', password: 'Passw0rd' } } }

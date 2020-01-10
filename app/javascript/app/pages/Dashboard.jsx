@@ -130,14 +130,14 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        <div class="row justify-content-lg-center">
-          <div class="col col-lg-4">
+        <div className="row justify-content-lg-center">
+          <div className="col col-lg-4">
             <h3>Available currencies:</h3>
             <ul className="currencies-list">
               { this.renderCurrencies() }
             </ul>
           </div>
-          <div class="col col-lg-2">
+          <div className="col col-lg-2">
             <button
               className='btn btn-primary visit-btn'
               type='button'
@@ -146,7 +146,7 @@ class Dashboard extends Component {
               Visit
             </button>
           </div>
-          <div class="col col-lg-4">
+          <div className="col col-lg-4">
             <h3>Visited countries:</h3>
             <ul className="visited-list">
               { this.renderVisitedCountries() }
@@ -158,8 +158,8 @@ class Dashboard extends Component {
           </div>
         </div>
 
-        <div class="row justify-content-lg-center">
-          <div class="col col-lg-6">
+        <div className="row justify-content-lg-center">
+          <div className="col col-lg-6">
             <CurrenciesChart data={this.state.chart_data} labels={this.state.chart_labels} />
           </div>
         </div>

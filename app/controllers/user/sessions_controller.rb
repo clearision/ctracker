@@ -7,7 +7,7 @@ class User::SessionsController < ApplicationController
         },
         status: :ok
     else
-      render json: { message: 'Incorrect Username or Password' }, status: :unprocessable_entity
+      render json: { message: 'Incorrect Username or Password' }, status: :unauthorized
     end
   end
 

@@ -5,7 +5,8 @@ import { withRouter } from 'react-router-dom'
 class SignInForm extends Component {
   state = {
     username: '',
-    password: ''
+    password: '',
+    showAlert: false
   }
 
   constructor(props) {
@@ -41,10 +42,11 @@ class SignInForm extends Component {
   }
 
   handleAuthErrors(data) {
-    console.log(data)
+    this.setState({ showAlert: true })
   }
 
   redirectToRoot(data) {
+    this.setState({ showAlert: false })
     this.props.setAuthToken(data.auth_token)
     this.props.history.push("/")
   }
@@ -53,10 +55,10 @@ class SignInForm extends Component {
     const { username, password } = this.state
 
     return (
-      <div class="row justify-content-lg-center">
-        <div class="col col-lg-4">
+      <div className="row justify-content-lg-center">
+        <div className="col col-lg-4">
           <form className="sign-in-form" onSubmit={ this.handleFormSubmit }>
-            <div class="form-group">
+            <div className="form-group">
               <label>Username:</label>
               <input
                 type="text"
@@ -66,7 +68,7 @@ class SignInForm extends Component {
                 className="form-control"
               />
             </div>
-            <div class="form-group">
+            <div className="form-group">
               <label>Password:</label>
               <input
                 type="password"
@@ -76,6 +78,12 @@ class SignInForm extends Component {
                 className="form-control"
               />
             </div>
+            { this.state.showAlert ?
+                <div className="sign-in-error alert alert-danger">
+                  Incorrect username or password!
+                </div>
+                : null
+            }
             <input className="btn btn-primary sign-in-btn" type="submit" value="Sign in" />
           </form>
         </div>
