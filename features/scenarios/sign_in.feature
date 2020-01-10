@@ -13,6 +13,9 @@ Feature: User sign in
   Scenario: Authorize user
     When I go to sign in page
     Then I should see the authorization form
-    When I fill in the credentials
+    When I fill in incorrect credentials
+    And I submit the form
+    Then I should see the alert message
+    When I fill in correct credentials
     And I submit the form
     Then I should be redirected to the dashboard page
