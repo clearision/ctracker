@@ -1,24 +1,27 @@
-# README
+# ctracker
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Dependencies
 
-Things you may want to cover:
+- Ruby 2.6.3
 
-* Ruby version
+## Setup
 
-* System dependencies
+```sh
+bundle install
+rake db:create db:migrate db:seed
+```
 
-* Configuration
+## Sign in
 
-* Database creation
+Seeded users are:
+- username: `mrsmart`  password: `password`
+- username: `hismate`  password: `mellon`
 
-* Database initialization
+Visit country to collect the currency
 
-* How to run the test suite
+## Tests
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```sh
+rspec spec/
+cucumber features/
+```
