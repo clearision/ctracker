@@ -20,6 +20,7 @@ class Dashboard extends Component {
     this.saveDashboardState = this.saveDashboardState.bind(this)
     this.renderCurrencies = this.renderCurrencies.bind(this)
     this.handleCheckboxToggle = this.handleCheckboxToggle.bind(this)
+    this.handleDashboardError = this.handleDashboardError.bind(this)
     this.handleVisitCall = this.handleVisitCall.bind(this)
     this.renderVisitedCountries = this.renderVisitedCountries.bind(this)
     this.renderCollectedCurrencies = this.renderCollectedCurrencies.bind(this)
@@ -35,7 +36,8 @@ class Dashboard extends Component {
       url: "/dashboard",
       data: `auth_token=${this.props.authToken}`,
       dataType: "json",
-      success: this.saveDashboardState
+      success: this.saveDashboardState,
+      error: this.handleDashboardError
     })
   }
 
@@ -44,6 +46,10 @@ class Dashboard extends Component {
     const checked_items = filter(checkboxes, (checkbox) => (checkbox.checked))
 
     this.setState({ countries_to_visit: map(checked_items, (checkbox) => (checkbox.value)) })
+  }
+
+  handleDashboardError() {
+    this.props.history.push("/sign_in")
   }
 
   handleVisitCall() {
@@ -88,7 +94,7 @@ class Dashboard extends Component {
           <div>
             <input
               type="checkbox"
-              className="visit-checkbox"
+              className="form-check-input visit-checkbox"
               value={ country.code }
               // checked={ country.visited }
               onChange={ this.handleCheckboxToggle }
@@ -124,27 +130,39 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        <h3>Available currencies:</h3>
-        <ul className="currencies-list">
-          { this.renderCurrencies() }
-        </ul>
-        <button
-          className='visit-btn'
-          type='button'
-          onClick={ this.handleVisitCall }
-        >
-          Visit
-        </button>
-        <h3>Visited countries:</h3>
-        <ul className="visited-list">
-          { this.renderVisitedCountries() }
-        </ul>
-        <h3>Collected currencies:</h3>
-        <ul className="collected-currencies-list">
-          { this.renderCollectedCurrencies() }
-        </ul>
+        <div class="row justify-content-lg-center">
+          <div class="col col-lg-4">
+            <h3>Available currencies:</h3>
+            <ul className="currencies-list">
+              { this.renderCurrencies() }
+            </ul>
+          </div>
+          <div class="col col-lg-2">
+            <button
+              className='btn btn-primary visit-btn'
+              type='button'
+              onClick={ this.handleVisitCall }
+            >
+              Visit
+            </button>
+          </div>
+          <div class="col col-lg-4">
+            <h3>Visited countries:</h3>
+            <ul className="visited-list">
+              { this.renderVisitedCountries() }
+            </ul>
+            <h3>Collected currencies:</h3>
+            <ul className="collected-currencies-list">
+              { this.renderCollectedCurrencies() }
+            </ul>
+          </div>
+        </div>
 
-        <CurrenciesChart data={this.state.chart_data} labels={this.state.chart_labels} />
+        <div class="row justify-content-lg-center">
+          <div class="col col-lg-6">
+            <CurrenciesChart data={this.state.chart_data} labels={this.state.chart_labels} />
+          </div>
+        </div>
       </div>
     )
   }

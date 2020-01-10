@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2020_01_09_090212) do
     t.string "code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["code"], name: "index_countries_on_code"
+    t.index ["code"], name: "index_countries_on_code", unique: true
   end
 
   create_table "country_currencies", force: :cascade do |t|
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2020_01_09_090212) do
     t.integer "currency_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["country_id", "currency_id"], name: "index_country_currencies_on_country_id_and_currency_id", unique: true
   end
 
   create_table "currencies", force: :cascade do |t|
@@ -32,7 +33,7 @@ ActiveRecord::Schema.define(version: 2020_01_09_090212) do
     t.string "code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["code"], name: "index_currencies_on_code"
+    t.index ["code"], name: "index_currencies_on_code", unique: true
   end
 
   create_table "user_countries", force: :cascade do |t|
@@ -40,7 +41,7 @@ ActiveRecord::Schema.define(version: 2020_01_09_090212) do
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["country_id", "user_id"], name: "index_user_countries_on_country_id_and_user_id"
+    t.index ["country_id", "user_id"], name: "index_user_countries_on_country_id_and_user_id", unique: true
   end
 
   create_table "user_currencies", force: :cascade do |t|
@@ -48,7 +49,7 @@ ActiveRecord::Schema.define(version: 2020_01_09_090212) do
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["currency_id", "user_id"], name: "index_user_currencies_on_currency_id_and_user_id"
+    t.index ["currency_id", "user_id"], name: "index_user_currencies_on_currency_id_and_user_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -57,7 +58,7 @@ ActiveRecord::Schema.define(version: 2020_01_09_090212) do
     t.string "authentication_token"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["authentication_token"], name: "index_users_on_authentication_token"
+    t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
   end
 
 end

@@ -53,29 +53,33 @@ class SignInForm extends Component {
     const { username, password } = this.state
 
     return (
-      <form className="form sign-in-form" onSubmit={ this.handleFormSubmit }>
-        <label>
-          Username:
-          <input
-            type="text"
-            name="username"
-            value={ username }
-            onChange={ this.handleUsernameChange }
-          />
-        </label>
-
-        <label>
-          Password:
-          <input
-            type="password"
-            name="password"
-            value={ password }
-            onChange={ this.handlePasswordChange }
-          />
-        </label>
-
-        <input className="sign-in-btn" type="submit" value="Sign in" />
-      </form>
+      <div class="row justify-content-lg-center">
+        <div class="col col-lg-4">
+          <form className="sign-in-form" onSubmit={ this.handleFormSubmit }>
+            <div class="form-group">
+              <label>Username:</label>
+              <input
+                type="text"
+                name="username"
+                value={ username }
+                onChange={ this.handleUsernameChange }
+                className="form-control"
+              />
+            </div>
+            <div class="form-group">
+              <label>Password:</label>
+              <input
+                type="password"
+                name="password"
+                value={ password }
+                onChange={ this.handlePasswordChange }
+                className="form-control"
+              />
+            </div>
+            <input className="btn btn-primary sign-in-btn" type="submit" value="Sign in" />
+          </form>
+        </div>
+      </div>
     )
   }
 }
